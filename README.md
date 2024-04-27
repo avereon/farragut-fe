@@ -10,6 +10,6 @@
 ## Installation
 
 - Clone the repository
-- `cd` into `farragut-application`
+- `cd` into `farragut-fe`
 - Run `npm install`
 - Run `npm start`
