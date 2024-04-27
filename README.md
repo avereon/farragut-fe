@@ -2,7 +2,7 @@
 
 ## Implemented with React and Typescript
 
-## Prerequesites
+## Prerequisites
 
 - Node.js 20 lts
 - npm
