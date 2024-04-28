@@ -4,13 +4,37 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {ThemeOptions} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from "@mui/material";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+export const themeOptions: ThemeOptions = {
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: '#3f51b5',
+        },
+        secondary: {
+            main: '#f50057',
+        },
+    },
+};
+export const theme = createTheme(themeOptions);
+
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
+
+const queryClient = new QueryClient();
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+                <App/>
+            </ThemeProvider>
+        </QueryClientProvider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
