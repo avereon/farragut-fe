@@ -1,6 +1,6 @@
 import React, {FormEventHandler, useState} from 'react';
 import './App.css';
-import {Alert, Button, Card, CircularProgress, Divider, FormControl, Input, InputAdornment, TextField, ThemeProvider, useMediaQuery} from "@mui/material";
+import {Alert, Button, Card, CircularProgress, Divider, FormControl, Input, InputAdornment, TextField, ThemeProvider, Typography, useMediaQuery} from "@mui/material";
 import {useLogin} from "./query-hooks/LoginHooks";
 import {GradientDivider} from "./components/GradientDivider";
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -22,12 +22,12 @@ function App() {
         <div className="App">
             <header className="App-login">
                 <Card sx={{display: "flex", gap: 2, flexDirection: "column", padding: 3, width: shouldSpan ? "85%" : 400}}>
-                    Login to your account
+                    <Typography>Login to your account</Typography>
                     <GradientDivider></GradientDivider>
                     <Input
                         endAdornment={
                             <InputAdornment position="end">
-                                <AccountCircle />
+                                <AccountCircle/>
                             </InputAdornment>
                         }
                         onKeyUp={(event) => {
@@ -40,8 +40,8 @@ function App() {
                             </InputAdornment>
                         }
                         onKeyUp={(event) => {
-                        if (event.key === "Enter") handleSubmit()
-                    }} onChange={(event) => setPassword(event.target.value ?? "")} type={"password"} placeholder={"Password"}></Input>
+                            if (event.key === "Enter") handleSubmit()
+                        }} onChange={(event) => setPassword(event.target.value ?? "")} type={"password"} placeholder={"Password"}></Input>
                     {loginQuery.isError && <Alert severity={"error"}>Invalid credentials</Alert>}
                     <Button disabled={!isValidated} onClick={handleSubmit}>
                         {loginQuery.isLoading ? <CircularProgress size={20}/> : "Login"}
