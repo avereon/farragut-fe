@@ -1,4 +1,4 @@
-import {useMemo, useRef} from "react";
+import {useMemo} from "react";
 
 export interface GradientDividerProps {
     color?: string;

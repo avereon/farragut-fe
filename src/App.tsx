@@ -1,6 +1,6 @@
-import React, {FormEventHandler, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {Alert, Button, Card, CircularProgress, Divider, FormControl, Input, InputAdornment, TextField, ThemeProvider, Typography, useMediaQuery} from "@mui/material";
+import {Alert, Button, Card, CircularProgress, Input, InputAdornment, Typography, useMediaQuery} from "@mui/material";
 import {useLogin} from "./query-hooks/LoginHooks";
 import {GradientDivider} from "./components/GradientDivider";
 import AccountCircle from '@mui/icons-material/AccountCircle';
