@@ -1,4 +1,4 @@
-# Farrgut Frontend
+# Farragut Frontend
 
 ## Implemented with React and Typescript
 
