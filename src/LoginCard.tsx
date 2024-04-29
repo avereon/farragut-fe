@@ -8,16 +8,16 @@ import {useLocalStorage} from "usehooks-ts";
 
 export const LoginCard = () => {
 
-    const loginQuery = useLogin();
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [loginQuery, login] = useLogin(userName, password);
     const isValidated = userName.trim().length > 0 && password.trim().length > 0;
     const shouldSpan = !useMediaQuery("(min-width:600px)");
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", localStorage.getItem("isAuthenticated") ?? false);
     const authed = loginQuery.isSuccess && loginQuery.data;
 
     const handleSubmit = async () => {
-        if (isValidated) await loginQuery.refetch();
+        if (isValidated) await login();
     }
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export const LoginCard = () => {
     }, [authed, setIsAuthenticated]);
 
     return (
-        <Card sx={{transform: "translate(-50%, -50%)", left: "50%", top: "50%", position:"fixed", display: "flex", gap: 2, flexDirection: "column", padding: 3, width: shouldSpan ? "85%" : 400}}>
+        <Card sx={{transform: "translate(-50%, -50%)", left: "50%", top: "50%", position: "fixed", display: "flex", gap: 2, flexDirection: "column", padding: 3, width: shouldSpan ? "85%" : 400}}>
             <Typography>Login to your account</Typography>
             <GradientDivider></GradientDivider>
             <Input

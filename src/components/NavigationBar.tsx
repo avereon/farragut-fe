@@ -11,10 +11,12 @@ export const NavigationBar = () => {
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", false);
     const queryClient = useQueryClient();
     const [showDrawer, setShowDrawer] = useState(false);
+    const [username, ,deleteUsername] = useLocalStorage("username", localStorage.getItem("username") ?? "");
 
     const logout = async () => {
         queryClient.clear();
         setShowDrawer(false);
+        deleteUsername();
         setIsAuthenticated(false);
     }
 
@@ -41,12 +43,15 @@ export const NavigationBar = () => {
                 <Box sx={{marginLeft: "auto"}}>
                     <Button variant={"outlined"} component={RouterLink} to="/upload"><Upload></Upload>Upload</Button>
                     <Button component={RouterLink} to="/about"><QuestionAnswer></QuestionAnswer> About</Button>
-                    <Button onClick={toggleDrawer} color={"secondary"}><Person></Person></Button>
+                    <Button onClick={toggleDrawer} color={"secondary"}><Avatar
+                        sx={{background: `${ApplicationColors.secondary}`}}>{username[0]}</Avatar></Button>
                 </Box>
             </Box>
             <SwipeableDrawer sx={{backdropFilter: "blur(1rem)"}} anchor={"right"} open={showDrawer} onOpen={() => setShowDrawer(true)} onClose={() => setShowDrawer(false)}>
                 <GradientDivider></GradientDivider>
-                <Box sx={{width: 300, display: "flex", alignItems: "center", gap: 2, justifyContent: "center"}}><Avatar>U</Avatar><Typography>USERNAME</Typography></Box>
+                <Box sx={{width: 300, display: "flex", alignItems: "center", gap: 2, justifyContent: "center"}}>
+                    <Person color={"secondary"}></Person>
+                    <Typography>{username}</Typography></Box>
                 <GradientDivider></GradientDivider>
                 <Button component={RouterLink} onClick={() => setShowDrawer(false)} to="/preferences" fullWidth={true} sx={{gap: 2}}><ManageAccountsRounded></ManageAccountsRounded>Preferences</Button>
                 <GradientDivider></GradientDivider>
