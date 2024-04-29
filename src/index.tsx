@@ -8,11 +8,7 @@ import {ThemeOptions} from '@mui/material/styles';
 import {createTheme, ThemeProvider} from "@mui/material";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {BrowserRouter} from "react-router-dom";
-
-export const enum ApplicationColors {
-    primary = "#2e9494",
-    secondary = "#f56e00",
-}
+import {ApplicationColors} from "./ApplicationColors";
 
 export const themeOptions: ThemeOptions = {
     palette: {

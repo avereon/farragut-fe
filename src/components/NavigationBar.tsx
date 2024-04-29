@@ -5,7 +5,7 @@ import {useLocalStorage} from "usehooks-ts";
 import {useQueryClient} from "@tanstack/react-query";
 import React, {useState} from "react";
 import {GradientDivider} from "./GradientDivider";
-import {ApplicationColors} from "../index";
+import {ApplicationColors} from "../ApplicationColors";
 
 export const NavigationBar = () => {
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", false);

@@ -1,4 +1,4 @@
-import {ApplicationColors} from "../index";
+import {ApplicationColors} from "../ApplicationColors";
 
 export interface GradientDividerProps {
     color?: string;
