@@ -12,4 +12,9 @@
 - Clone the repository
 - `cd` into `farragut-fe`
 - Run `npm install`
+
+## Running the app
 - Run `npm start`
+
+## Testing
+- Run `npm test`
