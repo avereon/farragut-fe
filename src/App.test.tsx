@@ -3,8 +3,11 @@ import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+jest.mock("usehooks-ts", () => ({
+    useLocalStorage: () => ([false, jest.fn(), jest.fn()])
+}));
 
+const queryClient = new QueryClient();
 test('Login button enabled and disables correctly', () => {
     act(() => {
         render(<QueryClientProvider client={queryClient}><App/></QueryClientProvider>);

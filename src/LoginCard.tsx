@@ -2,8 +2,9 @@ import {Alert, Button, Card, CircularProgress, Input, InputAdornment, Typography
 import {GradientDivider} from "./components/GradientDivider";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import {Key} from "@mui/icons-material";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useLogin} from "./query-hooks/LoginHooks";
+import {useLocalStorage} from "usehooks-ts";
 
 export const LoginCard = () => {
 
@@ -12,13 +13,19 @@ export const LoginCard = () => {
     const [password, setPassword] = useState("");
     const isValidated = userName.length > 0 && password.length > 0;
     const shouldSpan = !useMediaQuery("(min-width:600px)");
+    const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", localStorage.getItem("isAuthenticated") ?? false);
+    const authed = loginQuery.isSuccess && loginQuery.data;
 
     const handleSubmit = async () => {
         if (isValidated) await loginQuery.refetch();
     }
 
+    useEffect(() => {
+        if (authed) setIsAuthenticated(true);
+    }, [authed, setIsAuthenticated]);
+
     return (
-        <header className="App-login">
+        <header>
             <Card sx={{display: "flex", gap: 2, flexDirection: "column", padding: 3, width: shouldSpan ? "85%" : 400}}>
                 <Typography>Login to your account</Typography>
                 <GradientDivider></GradientDivider>

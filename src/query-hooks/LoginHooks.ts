@@ -1,12 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
 
-const failAfter = (ms: number) => new Promise((_, reject) => setTimeout(() => reject(), ms));
+const succeedAfter = (ms: number) => new Promise((resolve) => setTimeout(() => resolve(true), ms));
 
 export const useLogin = () => {
 
     return useQuery({
         queryKey: ["login"],
-        queryFn: () => failAfter(3000),
+        queryFn: () => succeedAfter(3000),
         retry: false,
         enabled: false,
     })
