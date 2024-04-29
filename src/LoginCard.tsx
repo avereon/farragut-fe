@@ -11,7 +11,7 @@ export const LoginCard = () => {
     const loginQuery = useLogin();
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const isValidated = userName.length > 0 && password.length > 0;
+    const isValidated = userName.trim().length > 0 && password.trim().length > 0;
     const shouldSpan = !useMediaQuery("(min-width:600px)");
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", localStorage.getItem("isAuthenticated") ?? false);
     const authed = loginQuery.isSuccess && loginQuery.data;

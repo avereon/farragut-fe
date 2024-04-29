@@ -9,14 +9,19 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {BrowserRouter} from "react-router-dom";
 
+export const enum ApplicationColors {
+    primary = "#2e9494",
+    secondary = "#f56e00",
+}
+
 export const themeOptions: ThemeOptions = {
     palette: {
         mode: 'dark',
         primary: {
-            main: "#2e9494",
+            main: ApplicationColors.primary,
         },
         secondary: {
-            main: '#f56e00',
+            main: ApplicationColors.secondary,
         },
     },
 };

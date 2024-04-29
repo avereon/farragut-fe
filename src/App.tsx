@@ -2,24 +2,19 @@ import React from 'react';
 import './App.css';
 import {LoginCard} from "./LoginCard";
 import {useLocalStorage} from "usehooks-ts";
-import {Button, Fade, Zoom} from "@mui/material";
-import {useQueryClient} from "@tanstack/react-query";
-import {Logout} from "@mui/icons-material";
+import {Fade, Zoom} from "@mui/material";
 import {TransitionGroup} from "react-transition-group";
 import {Route, Routes} from "react-router-dom";
 import {HomePage} from "./pages/HomePage";
 import {SearchPage} from "./pages/SearchPage";
 import {NavigationBar} from "./components/NavigationBar";
+import {About} from "./pages/About";
+import {Preferences} from "./pages/Preferences";
+import {UploadPage} from "./pages/UploadPage";
 
 function App() {
 
-    const [isAuthenticated, setIsAuthenticated] = useLocalStorage("isAuthenticated", false);
-    const queryClient = useQueryClient();
-
-    const logout = async () => {
-        queryClient.clear();
-        setIsAuthenticated(false);
-    }
+    const [isAuthenticated] = useLocalStorage("isAuthenticated", false);
 
     return (
         <div className="App">
@@ -35,11 +30,13 @@ function App() {
 
 									<Zoom in={isAuthenticated}>
 										<div>
-                                          <Routes>
-                                            <Route path="/" element={<HomePage/>}></Route>
-                                            <Route path="/search" element={<SearchPage/>}></Route>
-                                          </Routes>
-											<Button onClick={logout}><Logout></Logout> Logout</Button>
+											<Routes>
+												<Route path="/" element={<HomePage/>}></Route>
+												<Route path="/search" element={<SearchPage/>}></Route>
+												<Route path="/about" element={<About/>}></Route>
+												<Route path="/preferences" element={<Preferences/>}></Route>
+												<Route path="/upload" element={<UploadPage/>}></Route>
+											</Routes>
 										</div>
 									</Zoom>
                 }
