@@ -2,16 +2,23 @@ import React, {act} from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {useLocalStorage} from "usehooks-ts";
 
 jest.mock("usehooks-ts", () => ({
-    useLocalStorage: () => ([false, jest.fn(), jest.fn()])
+    useLocalStorage: jest.fn()
 }));
 
+const mockedLocalStorage = useLocalStorage as jest.Mock;
+
 const queryClient = new QueryClient();
-test('Login button enabled and disables correctly', () => {
-    act(() => {
-        render(<QueryClientProvider client={queryClient}><App/></QueryClientProvider>);
-    })
+
+const renderApp = () => {
+    return render(<QueryClientProvider client={queryClient}><App/></QueryClientProvider>);
+}
+
+it('Login button enables and disables correctly', () => {
+    mockedLocalStorage.mockReturnValue([false, jest.fn(), jest.fn()]);
+    renderApp();
 
     const usernameInput = screen.getByPlaceholderText(/username/i)
     expect(usernameInput).toBeInTheDocument();
@@ -39,4 +46,10 @@ test('Login button enabled and disables correctly', () => {
         fireEvent.change(passwordInput, {target: {value: ""}});
     });
     expect(loginButton).toBeDisabled();
+});
+
+it("should hide login card when authenticated", async () => {
+    mockedLocalStorage.mockReturnValue([true, jest.fn(), jest.fn()]);
+    renderApp();
+    expect(screen.queryByPlaceholderText(/username/i)).not.toBeInTheDocument();
 });
