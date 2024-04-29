@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {ThemeOptions} from '@mui/material/styles';
 import {createTheme, ThemeProvider} from "@mui/material";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {BrowserRouter} from "react-router-dom";
 
 export const themeOptions: ThemeOptions = {
     palette: {
@@ -30,7 +31,9 @@ root.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme}>
-                <App/>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
             </ThemeProvider>
         </QueryClientProvider>
     </React.StrictMode>

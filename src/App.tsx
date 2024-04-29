@@ -6,15 +6,10 @@ import {Button, Fade, Zoom} from "@mui/material";
 import {useQueryClient} from "@tanstack/react-query";
 import {Logout} from "@mui/icons-material";
 import {TransitionGroup} from "react-transition-group";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {HomePage} from "./pages/HomePage";
 import {SearchPage} from "./pages/SearchPage";
 import {NavigationBar} from "./components/NavigationBar";
-
-const router = createBrowserRouter([
-    {path: "/", element: <HomePage/>},
-    {path: "/search", element: <SearchPage/>}
-]);
 
 function App() {
 
@@ -40,7 +35,10 @@ function App() {
 
 									<Zoom in={isAuthenticated}>
 										<div>
-											<RouterProvider router={router}></RouterProvider>
+                                          <Routes>
+                                            <Route path="/" element={<HomePage/>}></Route>
+                                            <Route path="/search" element={<SearchPage/>}></Route>
+                                          </Routes>
 											<Button onClick={logout}><Logout></Logout> Logout</Button>
 										</div>
 									</Zoom>
