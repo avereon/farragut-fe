@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import {LoginCard} from "./LoginCard";
 import {useLocalStorage} from "usehooks-ts";
-import {Button, Typography} from "@mui/material";
+import {Button, Fade, Typography, Zoom} from "@mui/material";
 import {useQueryClient} from "@tanstack/react-query";
 import {Logout} from "@mui/icons-material";
+import {TransitionGroup} from "react-transition-group";
 
 function App() {
 
@@ -19,15 +20,22 @@ function App() {
 
     return (
         <div className="App">
-            {!isAuthenticated && <LoginCard></LoginCard>}
-            {isAuthenticated &&
-							<div>
-								<Typography>
-									Welcome <Typography color="secondary" component="span">User</Typography>
-								</Typography>
-								<Button onClick={logout}><Logout></Logout> Logout</Button>
-							</div>
-            }
+            <TransitionGroup >
+
+                {!isAuthenticated && <Fade in={!isAuthenticated}>
+									<div><LoginCard></LoginCard></div>
+								</Fade>}
+                {isAuthenticated &&
+									<Zoom in={isAuthenticated}>
+										<div>
+											<Typography>
+												Welcome <Typography color="secondary" component="span">User</Typography>
+											</Typography>
+											<Button onClick={logout}><Logout></Logout> Logout</Button>
+										</div>
+									</Zoom>
+                }
+            </TransitionGroup>
         </div>
     );
 }
