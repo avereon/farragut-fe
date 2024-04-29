@@ -44,7 +44,7 @@ export const NavigationBar = () => {
                     <Button onClick={toggleDrawer} color={"secondary"}><Person></Person></Button>
                 </Box>
             </Box>
-            <SwipeableDrawer anchor={"right"} open={showDrawer} onOpen={() => setShowDrawer(true)} onClose={() => setShowDrawer(false)}>
+            <SwipeableDrawer sx={{backdropFilter: "blur(1rem)"}} anchor={"right"} open={showDrawer} onOpen={() => setShowDrawer(true)} onClose={() => setShowDrawer(false)}>
                 <GradientDivider></GradientDivider>
                 <Box sx={{width: 300, display: "flex", alignItems: "center", gap: 2, justifyContent: "center"}}><Avatar>U</Avatar><Typography>USERNAME</Typography></Box>
                 <GradientDivider></GradientDivider>
