@@ -10,14 +10,18 @@ export const LoginCard = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [loginQuery, login] = useLogin(userName, password);
+    const loginQuery = useLogin();
     const isValidated = userName.trim().length > 0 && password.trim().length > 0;
     const shouldSpan = !useMediaQuery("(min-width:600px)");
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", localStorage.getItem("isAuthenticated") ?? false);
+    const [, setUsername] = useLocalStorage("username", localStorage.getItem("username") ?? false);
     const authed = loginQuery.isSuccess && loginQuery.data;
 
     const handleSubmit = async () => {
-        if (isValidated) await login();
+        if (isValidated){
+            await loginQuery.refetch();
+            setUsername(userName);
+        }
     }
 
     useEffect(() => {
