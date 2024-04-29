@@ -4,6 +4,7 @@ import {LoginCard} from "./LoginCard";
 import {useLocalStorage} from "usehooks-ts";
 import {Button, Typography} from "@mui/material";
 import {useQueryClient} from "@tanstack/react-query";
+import {Logout} from "@mui/icons-material";
 
 function App() {
 
@@ -22,9 +23,9 @@ function App() {
             {isAuthenticated &&
 							<div>
 								<Typography>
-									Welcome, user
+									Welcome <Typography color="secondary" component="span">User</Typography>
 								</Typography>
-								<Button onClick={logout}>Logout</Button>
+								<Button onClick={logout}><Logout></Logout> Logout</Button>
 							</div>
             }
         </div>
