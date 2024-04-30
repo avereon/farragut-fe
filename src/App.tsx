@@ -11,6 +11,7 @@ import {NavigationBar} from "./components/NavigationBar";
 import {About} from "./pages/About";
 import {Preferences} from "./pages/Preferences";
 import {UploadPage} from "./pages/UploadPage";
+import {AccountPage} from "./pages/AccountPage";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
 												<Route path="/search" element={<SearchPage/>}></Route>
 												<Route path="/about" element={<About/>}></Route>
 												<Route path="/preferences" element={<Preferences/>}></Route>
+												<Route path="/userinformation" element={<AccountPage/>}></Route>
 												<Route path="/upload" element={<UploadPage/>}></Route>
 											</Routes>
 										</div>

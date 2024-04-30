@@ -106,6 +106,9 @@ export const NavigationBar = () => {
                     <Person color={"secondary"}></Person>
                     <Typography>{username}</Typography></Box>
                 <GradientDivider></GradientDivider>
+                <Button component={RouterLink} onClick={() => setShowUserDrawer(false)} to="/userinformation" fullWidth={true}
+                        sx={{gap: 2}}><ManageAccountsRounded></ManageAccountsRounded>Account</Button>
+                <GradientDivider></GradientDivider>
                 <Button component={RouterLink} onClick={() => setShowUserDrawer(false)} to="/preferences" fullWidth={true}
                         sx={{gap: 2}}><ManageAccountsRounded></ManageAccountsRounded>Preferences</Button>
                 <GradientDivider></GradientDivider>
