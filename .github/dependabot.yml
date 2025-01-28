@@ -5,11 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: "java" # See documentation for possible values
-    directory: "/be" # Location of package manifests
-    schedule:
-      interval: "weekly"
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/fe" # Location of package manifests
+    directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
