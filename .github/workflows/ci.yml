@@ -52,7 +52,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-          cd build
+          cd dist
           zip -r ../client.zip *
 
       - name: Copy Client ZIP
