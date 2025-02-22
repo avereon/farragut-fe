@@ -2,7 +2,7 @@ import {Alert, Button, Card, CircularProgress, Input, InputAdornment, Typography
 import {GradientDivider} from "./components/GradientDivider";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import {Key} from "@mui/icons-material";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useLogin} from "./query-hooks/LoginHooks";
 import {useLocalStorage} from "usehooks-ts";
 

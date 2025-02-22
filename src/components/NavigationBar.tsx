@@ -3,7 +3,7 @@ import {Link as RouterLink} from "react-router-dom";
 import {Home, Logout, ManageAccountsRounded, MenuOutlined, Navigation, Person, QuestionAnswer, Search, Upload} from "@mui/icons-material";
 import {useLocalStorage} from "usehooks-ts";
 import {useQueryClient} from "@tanstack/react-query";
-import React, {useState} from "react";
+import {useState} from "react";
 import {GradientDivider} from "./GradientDivider";
 import {ApplicationColors} from "../ApplicationColors";
 import {BrowserView, MobileView} from "react-device-detect";

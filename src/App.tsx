@@ -1,5 +1,3 @@
-import React from 'react';
-import './App.css';
 import {LoginCard} from "./LoginCard";
 import {useLocalStorage} from "usehooks-ts";
 import {Fade, Zoom} from "@mui/material";
