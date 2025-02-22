@@ -56,7 +56,7 @@ jobs:
           zip -r ../client.zip *
 
       - name: Copy Client ZIP
-        run: scp -B client/client.zip travis@avereon.com:/opt/avn/store/latest/www.avereon.com/client.zip
+        run: scp -B client.zip travis@avereon.com:/opt/avn/store/latest/www.avereon.com/client.zip
 
       - name: Update the Website
         run: ssh travis@avereon.com /home/ecco/bin/update-avereon-website
