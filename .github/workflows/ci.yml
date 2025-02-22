@@ -7,7 +7,18 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '20'
+  AVN_GPG_PASSWORD: ${{ secrets.AVN_GPG_PASSWORD }}
+  AVN_KEYSTORE_PASSWORD: ${{ secrets.AVN_KEYSTORE_PASSWORD }}
+  AVN_REPO_USERNAME: ${{ secrets.AVN_REPO_USERNAME }}
+  AVN_REPO_PASSWORD: ${{ secrets.AVN_REPO_PASSWORD }}
+
+  NODE_VERSION: '22'
+
+  DISPLAY: ":99"
+  GITHUB_REF: ${{ github.ref }}
+  JAVA_VERSION: "17"
+  MAVEN_PARMS: "-B -U -V --settings ../.github/settings.xml --file pom.xml"
+  XVFB_PARMS: "-screen 0 1920x1080x24 -nolisten unix"
 
 jobs:
   build:
@@ -15,9 +26,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-
       - name: Fetch sources
         uses: actions/checkout@v4
+
+      - name: Fetch CI/CD resources
+        uses: actions/checkout@v4
+        with:
+          repository: avereon/canoe
+          path: .github
+
+      - name: Configuration
+        shell: bash
+        run: |
+          source .github/config.sh
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -29,4 +50,13 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          cd build
+          zip -r ../client.zip *
+
+      - name: Copy Client ZIP
+        run: scp -B client/client.zip travis@avereon.com:/opt/avn/store/latest/www.avereon.com/client.zip
+
+      - name: Update the Website
+        run: ssh travis@avereon.com /home/ecco/bin/update-avereon-website
