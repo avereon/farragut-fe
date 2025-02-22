@@ -59,4 +59,4 @@ jobs:
         run: scp -B client.zip travis@avereon.com:/opt/avn/store/latest/farragut.avereon.com/client.zip
 
       - name: Update the Website
-        run: ssh travis@avereon.com /home/ecco/bin/update-avereon-website
+        run: ssh travis@avereon.com /home/ecco/bin/update-farragut-website
