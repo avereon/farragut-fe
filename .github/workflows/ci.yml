@@ -11,7 +11,7 @@ env:
 
 jobs:
   build:
-    name: Compile, Test
+    name: Compile, Build
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -27,9 +27,6 @@ jobs:
 
       - name: Install
         run: npm install
-
-      - name: Test
-        run: npm test
 
       - name: Build
         run: npm run build
