@@ -8,19 +8,19 @@ import {useLocalStorage} from "usehooks-ts";
 
 export const LoginCard = () => {
 
-    const [userName, setUserName] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const loginQuery = useLogin();
-    const isValidated = userName.trim().length > 0 && password.trim().length > 0;
+    const loginMutation = useLogin();
+    const isValidated = username.trim().length > 0 && password.trim().length > 0;
     const shouldSpan = !useMediaQuery("(min-width:600px)");
     const [, setIsAuthenticated] = useLocalStorage("isAuthenticated", localStorage.getItem("isAuthenticated") ?? false);
-    const [, setUsername] = useLocalStorage("username", localStorage.getItem("username") ?? false);
-    const authed = loginQuery.isSuccess && loginQuery.data;
+    const [, setDisplayName] = useLocalStorage("username", localStorage.getItem("username") ?? false);
+    const authed = loginMutation.isSuccess && loginMutation.data;
 
     const handleSubmit = async () => {
-        if (isValidated){
-            await loginQuery.refetch();
-            setUsername(userName);
+        if (isValidated) {
+            loginMutation.mutate({username, password});
+            setDisplayName(username);
         }
     }
 
@@ -40,7 +40,7 @@ export const LoginCard = () => {
                 }
                 onKeyUp={(event) => {
                     if (event.key === "Enter") handleSubmit()
-                }} onChange={(event) => setUserName(event.target.value ?? "")} placeholder={"Username"}></Input>
+                }} onChange={(event) => setUsername(event.target.value ?? "")} placeholder={"Username"}></Input>
             <Input
                 endAdornment={
                     <InputAdornment position="end">
@@ -50,9 +50,9 @@ export const LoginCard = () => {
                 onKeyUp={(event) => {
                     if (event.key === "Enter") handleSubmit()
                 }} onChange={(event) => setPassword(event.target.value ?? "")} type={"password"} placeholder={"Password"}></Input>
-            {loginQuery.isError && <Alert severity={"error"}>Invalid credentials</Alert>}
+            {loginMutation.isError && <Alert severity={"error"}>Invalid credentials</Alert>}
             <Button disabled={!isValidated} onClick={handleSubmit}>
-                {loginQuery.isLoading ? <CircularProgress size={20}/> : "Login"}
+                {loginMutation.isPending ? <CircularProgress size={20}/> : "Login"}
             </Button>
         </Card>
     );
